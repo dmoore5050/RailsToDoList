@@ -1,4 +1,15 @@
 Todolist::Application.routes.draw do
+
+  get "task/add"
+
+  get "task/create"
+
+  get "task/index"
+
+  get "task/view"
+
+  get "task/delete"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
