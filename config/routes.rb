@@ -1,14 +1,8 @@
 Todolist::Application.routes.draw do
 
-  get "task/add"
+  root to: "tasks#index"
 
-  get "task/create"
-
-  get "task/index"
-
-  get "task/view"
-
-  get "task/delete"
+  resources :tasks, only: [:index, :new, :create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
