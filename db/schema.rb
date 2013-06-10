@@ -15,14 +15,13 @@ ActiveRecord::Schema.define(:version => 20130605163758) do
 
   create_table "lists", :force => true do |t|
     t.string   "title"
-    t.text     "body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "tasks", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
+    t.string   "name"
+    t.integer  "list_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

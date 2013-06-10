@@ -1,3 +1,4 @@
 class List < ActiveRecord::Base
-  attr_accessible :body, :title
+  attr_accessible :title
+  has_many :tasks
 end

@@ -14,3 +14,11 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
   self.use_transactional_fixtures = false
 end
+
+module DatabaseCleaner
+  def before_setup
+    super
+    Task.destroy_all
+    List.destroy_all
+  end
+end

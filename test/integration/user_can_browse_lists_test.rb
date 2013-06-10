@@ -1,13 +1,15 @@
 require 'test_helper'
 
 class UserCanBrowseTasksTest < ActionDispatch::IntegrationTest
+  include DatabaseCleaner
 
   test 'view a list of tasks' do
-    Task.create!(title: "Sweep Kitchen")
-    Task.create!(title: "Clean Fridge")
+    list = List.create(title: 'Kitchen tasks')
+    list.tasks.create!(name: "Sweep Kitchen")
+    list.tasks.create!(name: "Clean Fridge")
 
     assert_equal 2, Task.count
-    visit '/tasks'
+    visit "/lists/#{list.id}/tasks"
     assert_include page.body, "Task List"
     assert_include page.body, "Sweep Kitchen"
     assert_include page.body, "Clean Fridge"
