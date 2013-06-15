@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class BrowseAllListsAndTasks < ActionDispatch::IntegrationTest
-  include DatabaseCleaner
+
 
   test 'view a list of lists' do
     List.create!(title: 'Kitchen tasks')

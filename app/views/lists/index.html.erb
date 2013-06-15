@@ -1,4 +1,4 @@
-<h1> Big 'Ol Lists List'</h1>
+<h1> List All the Lists!!</h1>
 <ul>
   <% @lists.each do | list | %>
     <li><h3>List: <%= list.title %></h3></li>
@@ -6,22 +6,29 @@
       <% list_tasks = list.tasks.all %>
       <% list_tasks.each do | task | %>
         <li>
-          <%= task.name %>
+          <%= form_for [list, task], :html => {:class => 'checkbox_form'} do |f| %>
+            <%= f.check_box :finished, onclick: '$(this).closest("form").submit()' %>
+          <% end %>
+          <p><%= task.name %></p>
+          <%= form_for [list, task] do |f| %>
+            <%= button_to 'Delete', list_tasks_path(list, task), method: :delete %>
+          <% end %>
+          <br>
         </li>
       <% end %>
     </ul>
     <br>
-    <%= form_for list.tasks.new, :url => list_tasks_path(list) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.submit "Add Task" %>
+    <%= form_for list.tasks.new, url: list_tasks_path(list) do |f| %>
+      <%= f.label :name, 'Name:', style: 'float: left' %>
+      <%= f.text_field :name, style: 'float: left' %>
+      <%= f.submit 'Add Task' %>
     <% end %>
     <br />
   <% end %>
 </ul>
-
-<%= form_for :list, :url => { :action => :create } do |f| %>
+<br>
+<%= form_for @list do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
-  <%= f.submit "Add List" %>
+  <%= f.submit 'Add List' %>
 <% end %>

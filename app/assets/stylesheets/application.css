@@ -11,3 +11,18 @@
  *= require_self
  *= require_tree .
  */
+
+ul {
+  list-style-type: none;
+}
+
+form, input, label, p {
+  float: left;
+}
+.checkbox_form, .new_task {
+  clear: left;
+}
+
+p {
+  margin: 0 10px;
+}

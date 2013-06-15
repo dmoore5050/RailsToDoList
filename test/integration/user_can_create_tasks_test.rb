@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class UserCanCreateTaskTest < ActionDispatch::IntegrationTest
-  include DatabaseCleaner
 
   test 'creating a new task' do
     visit '/'

@@ -5,20 +5,20 @@ require 'rails/test_help'
 require 'capybara/rails'
 #Capybara.default_driver = :selenium
 
-class ActiveSupport::TestCase
+DatabaseCleaner.strategy = :truncation
 
+class ActiveSupport::TestCase
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
 end
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
   self.use_transactional_fixtures = false
-end
-
-module DatabaseCleaner
-  def before_setup
-    super
-    Task.destroy_all
-    List.destroy_all
-  end
 end

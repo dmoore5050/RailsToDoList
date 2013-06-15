@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AddNewList < ActionDispatch::IntegrationTest
-  include DatabaseCleaner
+
 
   test "add a new list" do
     visit '/'
